@@ -1,6 +1,6 @@
 name: ${project.name}
 version: ${project.version}
-main: com.gmail.nossr50.SpawnPlugin
+main: com.gmail.nossr50.vspawn.SpawnPlugin
 commands:
     spawn:
         description: Teleports the player to spawn after a set time
