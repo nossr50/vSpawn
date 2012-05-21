@@ -1,11 +1,11 @@
-package com.gmail.nossr50.runnables;
+package com.gmail.nossr50.vspawn.runnables;
 
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import com.gmail.nossr50.SpawnPlugin;
+import com.gmail.nossr50.vspawn.SpawnPlugin;
 
 public class TeleportHandler implements Runnable {
     SpawnPlugin plugin = null;

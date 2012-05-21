@@ -1,4 +1,4 @@
-package com.gmail.nossr50.listeners;
+package com.gmail.nossr50.vspawn.listeners;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 
-import com.gmail.nossr50.SpawnPlugin;
+import com.gmail.nossr50.vspawn.SpawnPlugin;
 
 public class PlayerListener implements Listener {
     SpawnPlugin plugin = null;

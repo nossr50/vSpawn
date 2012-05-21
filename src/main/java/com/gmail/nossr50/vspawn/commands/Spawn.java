@@ -1,11 +1,11 @@
-package com.gmail.nossr50.commands;
+package com.gmail.nossr50.vspawn.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.gmail.nossr50.SpawnPlugin;
+import com.gmail.nossr50.vspawn.SpawnPlugin;
 
 public class Spawn implements CommandExecutor {
     private SpawnPlugin plugin;

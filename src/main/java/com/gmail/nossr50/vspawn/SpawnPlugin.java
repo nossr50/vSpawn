@@ -1,4 +1,4 @@
-package com.gmail.nossr50;
+package com.gmail.nossr50.vspawn;
 
 import java.util.HashMap;
 
@@ -7,10 +7,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.gmail.nossr50.commands.Spawn;
-import com.gmail.nossr50.listeners.EntityListener;
-import com.gmail.nossr50.listeners.PlayerListener;
-import com.gmail.nossr50.runnables.TeleportHandler;
+import com.gmail.nossr50.vspawn.commands.Spawn;
+import com.gmail.nossr50.vspawn.listeners.EntityListener;
+import com.gmail.nossr50.vspawn.listeners.PlayerListener;
+import com.gmail.nossr50.vspawn.runnables.TeleportHandler;
 
 public class SpawnPlugin extends JavaPlugin {
 
