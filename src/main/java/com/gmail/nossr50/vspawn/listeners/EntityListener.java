@@ -3,9 +3,9 @@ package com.gmail.nossr50.vspawn.listeners;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 
 import com.gmail.nossr50.vspawn.SpawnPlugin;
-import org.bukkit.event.entity.*;
 
 public class EntityListener implements Listener {
     SpawnPlugin plugin = null;
