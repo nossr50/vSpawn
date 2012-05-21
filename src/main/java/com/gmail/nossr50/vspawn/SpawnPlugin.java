@@ -50,6 +50,7 @@ public class SpawnPlugin extends JavaPlugin {
     }
 
     public void scheduleForPlayer(Player player) {
-        getServer().getScheduler().scheduleSyncDelayedTask(this, new TeleportHandler(player), 600L);
+        int taskId = getServer().getScheduler().scheduleSyncDelayedTask(this, new TeleportHandler(player), 600L);
+        SpawnPlugin.waitingToTeleport.put(player, taskId);
     }
 }
