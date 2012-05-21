@@ -1,0 +1,7 @@
+name: vSpawn
+version: 0.01
+main: com.gmail.nossr50.SpawnPlugin
+load: STARTUP
+commands:
+    spawn:
+        description: Teleports the player to spawn after a set time
