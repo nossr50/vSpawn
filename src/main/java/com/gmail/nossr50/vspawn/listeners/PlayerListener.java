@@ -9,21 +9,15 @@ import org.bukkit.event.player.*;
 import com.gmail.nossr50.vspawn.SpawnPlugin;
 
 public class PlayerListener implements Listener {
-    SpawnPlugin plugin = null;
-    
-    public PlayerListener(SpawnPlugin plugin) {
-        this.plugin = plugin;
-    }
-    
     @EventHandler(ignoreCancelled = true)
     public void PlayerMoveEvent(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         Location a = event.getFrom(), b = event.getTo();
         
-        if(plugin.waitingToTeleport.containsKey(player)) {
+        if(SpawnPlugin.isWaitingForTeleport(player)) {
             if(a.getBlockX() != b.getBlockX() || a.getBlockZ() != b.getBlockZ()) {
-                player.sendMessage(plugin.infoPrefix+"Your movement has cancelled the teleport!");
-                plugin.waitingToTeleport.remove(player);
+                player.sendMessage(SpawnPlugin.infoPrefix+"Your movement has cancelled the teleport!");
+                SpawnPlugin.cancelForPlayer(player);
             }
         }
     }

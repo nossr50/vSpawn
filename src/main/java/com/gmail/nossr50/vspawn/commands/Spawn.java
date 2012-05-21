@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 import com.gmail.nossr50.vspawn.SpawnPlugin;
 
 public class Spawn implements CommandExecutor {
-    private SpawnPlugin plugin;
-    
-    public Spawn (SpawnPlugin plugin) {
+    private final SpawnPlugin plugin;
+
+    public Spawn(SpawnPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -18,18 +18,17 @@ public class Spawn implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
-            if(plugin.waitingToTeleport.containsKey(player)) {
-                player.sendMessage(plugin.infoPrefix+"You are already waiting to teleport.");
+            if(SpawnPlugin.isWaitingForTeleport(player)) {
+                player.sendMessage(SpawnPlugin.infoPrefix+"You are already waiting to teleport.");
             } else {
-                player.sendMessage(plugin.infoPrefix+"Starting the teleport process...");
-                player.sendMessage(plugin.infoPrefix+"Please remain still for 30 seconds");
-                plugin.waitingToTeleport.put(player, System.currentTimeMillis()+(30 * 1000));
+                player.sendMessage(SpawnPlugin.infoPrefix+"Starting the teleport process...");
+                player.sendMessage(SpawnPlugin.infoPrefix+"Please remain still for 30 seconds");
+                plugin.scheduleForPlayer(player);
             }
-            
         } else {
             sender.sendMessage("This command does not support console useage.");
         }
-        
+
         return true;
     }
 }

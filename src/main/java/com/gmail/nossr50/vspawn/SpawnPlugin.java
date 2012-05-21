@@ -13,21 +13,18 @@ import com.gmail.nossr50.vspawn.listeners.PlayerListener;
 import com.gmail.nossr50.vspawn.runnables.TeleportHandler;
 
 public class SpawnPlugin extends JavaPlugin {
-
-    public HashMap<Player, Long> waitingToTeleport = new HashMap<Player, Long>();
-    public String infoPrefix = ChatColor.GOLD+"[vSpawn] "+ChatColor.RED;
+    private static HashMap<Player, Integer> waitingToTeleport = new HashMap<Player, Integer>();
+    public static final String infoPrefix = ChatColor.GOLD+"[vSpawn] "+ChatColor.RED;
 
     PlayerListener playerListener = null;
     EntityListener entityListener = null;
 
     public void onEnable() {
-        playerListener = new PlayerListener(this);
-        entityListener = new EntityListener(this);
+        playerListener = new PlayerListener();
+        entityListener = new EntityListener();
 
-        Bukkit.getPluginManager().registerEvents(playerListener, this);
-        Bukkit.getPluginManager().registerEvents(entityListener, this);
-
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new TeleportHandler(this), 0, 20);
+        getServer().getPluginManager().registerEvents(playerListener, this);
+        getServer().getPluginManager().registerEvents(entityListener, this);
 
         getCommand("spawn").setExecutor(new Spawn(this));
 
@@ -35,9 +32,24 @@ public class SpawnPlugin extends JavaPlugin {
     }
     
     public void onDisable() {
-        Bukkit.getScheduler().cancelTasks(this);
+        getServer().getScheduler().cancelTasks(this);
 
         getLogger().info("Finished Unloading "+getDescription().getFullName());
     }
 
+    public static boolean isWaitingForTeleport(Player player) {
+        return waitingToTeleport.containsKey(player);
+    }
+
+    public static void cancelForPlayer(Player player) {
+        if(isWaitingForTeleport(player)) {
+            int cancel = waitingToTeleport.get(player);
+            Bukkit.getScheduler().cancelTask(cancel);
+        }
+        return;
+    }
+
+    public void scheduleForPlayer(Player player) {
+        getServer().getScheduler().scheduleSyncDelayedTask(this, new TeleportHandler(player), 600L);
+    }
 }
